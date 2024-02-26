@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+{% block content %}
+<form action="{{ url_for('play') }}" method="post">
+<input type="text" name="guess" value="enter your guess here..." onfocus="this.value=''">
+<input type="submit" value="Check">
+</form>
+{% endblock %}

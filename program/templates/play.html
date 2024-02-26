@@ -1,4 +1,12 @@
-{% extends "index.html" %}
+{% extends "start.html" %}
 {% block content %}
-<p class="discl">hello world</p>
+
+<p>{{ guess }}: <span class="result">{{ output }}</span></p>
+{% if output != "XXXXX" %}
+{{ super() }}
+{% elif output == "XXXXX" %}
+<p class="winner">Nice.</p>
+<a href="{{ url_for('start') }}" class="button">Play again</a>
+{% endif %}
+
 {% endblock %}

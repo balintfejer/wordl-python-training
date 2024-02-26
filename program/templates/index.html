@@ -20,7 +20,7 @@
         margin-right: auto;
     }
 
-    #main p:nth-of-type(2) {
+    #main p:nth-of-type(2), p:nth-of-type(3) {
         width:55%;
         margin-left:auto;
         margin-right:auto;
@@ -32,31 +32,28 @@
     h1, h2 {text-shadow: 2px 3px #282828;font-weight: 350;}
 
     .discl {font-family:"Anonymus Pro", monospace;font-size: 70%;}
-
     .discl a {color: #f7b85a;}
     .discl a:hover {text-decoration: none;}
 
-    .hint {
-        font-size: 85%;
-        font-weight: lighter;
-        width:55%;
-        margin-left:auto;
-        margin-right:auto;
-        border-bottom: 2px dotted #d6d2d2;
-        border-width: 1px;
-        padding-bottom: 27px;
-    }
+    .hint {font-size: 85%;font-weight: lighter;}
 
     .button {
         background-color: #04AA6D;
         border: none;
-        color: white;
+        color: #d6d2d2;
+        text-shadow: 1px 2px #282828;
         padding: 15px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         margin: 4px 2px;
     }
+
+    .button:hover {background-color:#56ecb5;color:#282828;text-shadow: none;}
+
+    .result {letter-spacing: 0.15em;}
+
+    .winner {background-color: green;width:55%;margin-left:auto;margin-right:auto;}
     </style>
 </head>
 <body>
@@ -66,22 +63,13 @@
 <h1>Welcome to Not W_rdle</h1>
 
 <p class="discl">this is a learning project to get to know python and flask</p>
-<p class="discl"><a href="https://github.com/balintfejer/wordl-python-training" title="GitHub">view code</a> | <a href="https://linkedin.com/in/balint-fejer" title="LinkedIn">my profile</a></p>
+<p class="discl"><a href="https://github.com/balintfejer/wordl-python-training" title="GitHub">view the code</a> | <a href="https://linkedin.com/in/balint-fejer" title="LinkedIn">let's connect</a></p>
 
 <h2>Guess a word in six tries</h2>
-<p class="hint"><strong>X</strong>: the letter is at the <strong>correct place</strong><br/><strong>O</strong>: the word you're looking for <strong>contains</strong> the letter<br/><strong>_</strong>: the letter is <strong>not part of</strong> the word</p>
+<p class="hint"><strong>X</strong>: the letter is at the <strong>correct position</strong><br/><strong>O</strong>: the word you're looking for <strong>contains</strong> the letter<br/><strong>_</strong>: the letter is <strong>not part of</strong> the word</p>
 
+{% block content %}<a href="{{ url_for('start') }}" class="button">Let's play</a>{% endblock %}
 
-{% block content %}<a href="{{ url_for('playy') }}" class="button">Let's Play</a>{% endblock %}
-<!--
-{% if { cond:won }  %}
-<p style="background-color: green; color: white">You Won!</p>
-
-{% else %}
-<p style="background-color: red; color: black">You Lost!</p>
-
-{% endif %}
--->
 </div>
 
 </body>
