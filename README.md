@@ -1,5 +1,5 @@
 # wordl-python-training
-wordl in python for training purposes, from the openSAP course python for beginners.
+wordl in python for training purposes, from the openSAP course python for beginners. see [original_exercise.md](program/original_exercise.md) for more details.
 
 ## Roadmap / Todo
 
