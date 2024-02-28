@@ -23,35 +23,14 @@ def start():
    
     fl.session['goal'] = goal
     fl.session['playcount'] = 0
+    fl.session['playlist'] = []
 
     print(goal) ### TEST
     
     return fl.render_template("start.html")
 
-    # playcount = 1
-    # wincond = "XXXXX"
-
-    # won = "You won!"
-    # lost = f"You lost!\nThe word was: {goal}"
-    
-    # while playcount <= 6:
-
-    #     playcount += 1
-    #     guess = input("Pls guess a 5-letter word:").lower()
-        
-    #     if guess not in word_list():
-    #         print("That's not a real word!")
-    #     else:
-    #         guess = check_guess(guess, goal)
-    #         print(guess)
-    #         if guess == wincond:
-    #             break
-
-    # if guess == wincond:
-    # else:
-
 @app.route('/play', methods=["POST"])
-def play(output=None, guess=None, playcount=None):
+def play(output=None, guess=None, goal=None, playcount=None, playlist=None):
 
     guess = fl.request.form['guess'].lower()
     goal = fl.session.get('goal', None)
@@ -87,4 +66,12 @@ def play(output=None, guess=None, playcount=None):
         else: ### guess[i] not in goal
             output += "_"
 
-    return fl.render_template("play.html", output=output, guess=guess, playcount=playcount)
+    if guess != goal:
+        item = [fl.session.get('playcount'), guess, output]
+        fl.session['playlist'].append(item)
+
+    playlist = fl.session.get('playlist', None)
+
+    # print(fl.session.get('playlist')) ### TEST
+
+    return fl.render_template("play.html", output=output, guess=guess, playcount=playcount, playlist=playlist, goal=goal)
