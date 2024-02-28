@@ -9,35 +9,29 @@
     body {
         background-color: #112a4b;
         color: #d6d2d2;
-        font-family: "Roboto Slab";
+        font-family: "Roboto Slab", serif;
         font-size: x-large;
         text-align: center;
     }
 
-    #main {
-        width: 65%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    #main {width: 65%;}
+
+    #main, form, #main p:nth-of-type(2), p:nth-of-type(3), .win, .lose {margin-left:auto;margin-right:auto;}
 
     #main p:nth-of-type(2), p:nth-of-type(3) {
         width:55%;
-        margin-left:auto;
-        margin-right:auto;
         border-bottom: 2px dotted #d6d2d2;
         border-width: 1px;
         padding-bottom: 27px;
     }
 
-    h1, h2 {text-shadow: 2px 3px #282828;font-weight: 350;}
+    h1, h2 {text-shadow: 2px 3px #282828;font-weight:350;}
 
-    .discl {font-family:"Anonymus Pro", monospace;font-size: 70%;}
+    .discl {font-family:"Anonymus Pro",monospace;font-size:70%;}
     .discl a {color: #f7b85a;}
-    .discl a:hover {text-decoration: none;}
+    .discl a:hover {text-decoration:none;}
 
-/**    .help {text-decoration:underline 3px dotted #f7b85a;cursor: help;}**/
-
-    .hint {font-size: 85%;font-weight: lighter;}
+    .hint {font-size:85%;font-weight:lighter;}
 
     .button {
         background-color: #04AA6D;
@@ -45,65 +39,67 @@
         color: #d6d2d2;
         text-shadow: 1px 2px #282828;
         padding: 15px 32px;
-        text-align: center;
         text-decoration: none;
         display: inline-block;
         margin: 4px 2px;
     }
 
-    .button:hover {background-color:#56ecb5;color:#282828;text-shadow: none;}
+    .button:hover {background-color:#56ecb5;color:#282828;text-shadow:none;}
+
+    input {font-family:"Roboto Slab",serif;font-size:x-large;color:#282828;padding:10px;border:none;}
+    input[type=text] {letter-spacing: 0.15em;background-color:#d6d2d2;width:45%;}
+    input[type=submit] {background-color:#f7b85a;font-weight:bold;text-decoration:underline;}
+    input[type=submit]:hover {text-decoration: none;}
 
     .result {letter-spacing: 0.15em;}
-
-    .win {background-color: green;width:55%;margin-left:auto;margin-right:auto;}
-
-    .lose {background-color: #7d1111;width:55%;margin-left:auto;margin-right:auto;}
+    .win, .lose {width:55%;padding:10px;}
+    .win {background-color: green;}
+    .lose {background-color: #7d1111;}
 
     /* Tooltip container */
-.help {position: relative; text-decoration:underline 3px dotted #f7b85a;cursor: help;}
+    .help {position: relative; text-decoration:underline 3px dotted #f7b85a;cursor: help;}
   
-  /* Tooltip text */
-  .help .helptext {
-    visibility: hidden;
-    width: 400px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    text-shadow: none;
-    font-size: 50%;
+    /* Tooltip text */
+    .help .helptext {
+        visibility: hidden;
+        width: 400px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        text-shadow: none;
+        font-size: 50%;
   
     /* Position the tooltip text */
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
   
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
+        opacity: 0;
+        transition: opacity 0.3s;
   }
   
-  /* Tooltip arrow */
-  .help .helptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 17%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+    /* Tooltip arrow */
+    .help .helptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 17%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
   }
   
   /* Show the tooltip text when you mouse over the tooltip container */
-  .help:hover .helptext {
-    visibility: visible;
-    opacity: 1;
+    .help:hover .helptext {
+        visibility: visible;
+        opacity: 1;
   }
-
     </style>
 </head>
 <body>
