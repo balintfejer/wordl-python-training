@@ -35,6 +35,8 @@
     .discl a {color: #f7b85a;}
     .discl a:hover {text-decoration: none;}
 
+/**    .help {text-decoration:underline 3px dotted #f7b85a;cursor: help;}**/
+
     .hint {font-size: 85%;font-weight: lighter;}
 
     .button {
@@ -57,6 +59,51 @@
 
     .lose {background-color: #7d1111;width:55%;margin-left:auto;margin-right:auto;}
 
+    /* Tooltip container */
+.help {position: relative; text-decoration:underline 3px dotted #f7b85a;cursor: help;}
+  
+  /* Tooltip text */
+  .help .helptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    text-shadow: none;
+    font-size: 50%;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .help .helptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 17%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .help:hover .helptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
     </style>
 </head>
 <body>
@@ -68,7 +115,7 @@
 <p class="discl">this is a learning project to get to know python and flask</p>
 <p class="discl"><a href="https://github.com/balintfejer/wordl-python-training" title="GitHub">view the code</a> | <a href="https://linkedin.com/in/balint-fejer" title="LinkedIn">let's connect</a></p>
 
-<h2>Guess a word in six tries</h2>
+<h2>Guess <span class="help">a word<span class="helptext">You're looking for a 5-letter English word.<br/>Your guess must be 5 characters long.</span></span> in six tries</h2>
 <p class="hint"><strong>X</strong>: the letter is at the <strong>correct position</strong><br/><strong>O</strong>: the word you're looking for <strong>contains</strong> the letter<br/><strong>_</strong>: the letter is <strong>not part of</strong> the word</p>
 
 {% block content %}<a href="{{ url_for('start') }}" class="button">Let's play</a>{% endblock %}
