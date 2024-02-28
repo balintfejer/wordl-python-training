@@ -1,28 +1,45 @@
 import random as r
+import flask as fl
 
 ################################################################
 ###                                                          ###
-### 2024-02: v0.1                                            ###
+### 2024-02: v0.2                                            ###
 ### KNOWN ISSUES:                                            ###
-###   [X] too many functions                                 ###
-###   [X] false positive (O) when two guess chars in places  ###
-###       before the one goal char                           ###
-###   [X] randint could be changed                           ###
-###   [X] input that's not in word list doesn't count as try,###
-###       will loop forever                                  ###
 ###                                                          ###   
 ################################################################
 
-def word_list():
+app = fl.Flask(__name__)
+app.config['SECRET_KEY'] = 'big!secret'
 
+@app.route('/')
+def welcome():
+    return fl.render_template("index.html")
+
+@app.route('/start')
+def start():
     with open("words.txt", "r") as words:
         full_word_list = [line.strip() for line in words]
-    return full_word_list
+    goal = r.choice(full_word_list)
+   
+    fl.session['goal'] = goal
+    fl.session['playcount'] = 0
+    fl.session['playlist'] = []
 
-def check_guess(guess, goal):
+    print(goal) ### TEST
+    
+    return fl.render_template("start.html")
 
+@app.route('/play', methods=["POST"])
+def play(output=None, guess=None, goal=None, playcount=None, playlist=None):
+
+    guess = fl.request.form['guess'].lower()
+    goal = fl.session.get('goal', None)
+    fl.session['playcount'] += 1
+    playcount = fl.session.get('playcount', None)
     this_guess_char_count = 0
     output = ""
+
+    # print(fl.session['playcount']) ### TEST
 
     for i in range(len(guess)):
 
@@ -49,39 +66,12 @@ def check_guess(guess, goal):
         else: ### guess[i] not in goal
             output += "_"
 
-    return output
+    if guess != goal:
+        item = [fl.session.get('playcount'), guess, output]
+        fl.session['playlist'].append(item)
 
-# print(check_guess("carat", "train")) ### TEST
-# print(check_guess("taunt", "train")) ### TEST
-# print(check_guess("solos", "boobs")) ### TEST
-# print(check_guess("aabcd", "qqaqq")) ### TEST
+    playlist = fl.session.get('playlist', None)
 
-def play():
+    # print(fl.session.get('playlist')) ### TEST
 
-    goal = r.choice(word_list())
-    print(goal) ### TEST
-
-    playcount = 1
-    wincond = "XXXXX"
-    won = "You won!"
-    lost = f"You lost!\nThe word was: {goal}"
-    
-    while playcount <= 6:
-
-        playcount += 1
-        guess = input("Pls guess a 5-letter word:").lower()
-        
-        if guess not in word_list():
-            print("That's not a real word!")
-        else:
-            guess = check_guess(guess, goal)
-            print(guess)
-            if guess == wincond:
-                break
-    
-    if guess == wincond:
-        return print(won)
-    else:
-        return print(lost)
-
-# play()
+    return fl.render_template("play.html", output=output, guess=guess, playcount=playcount, playlist=playlist, goal=goal)

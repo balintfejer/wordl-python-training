@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+    <title>Not W_rdle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <style>
+    body {
+        background-color: #112a4b;
+        color: #d6d2d2;
+        font-family: "Roboto Slab", serif;
+        font-size: x-large;
+        text-align: center;
+    }
+
+    #main {width: 65%;}
+
+    #main, form, #main p:nth-of-type(2), p:nth-of-type(3), .win, .lose {margin-left:auto;margin-right:auto;}
+
+    #main p:nth-of-type(2), p:nth-of-type(3) {
+        width:55%;
+        border-bottom: 2px dotted #d6d2d2;
+        border-width: 1px;
+        padding-bottom: 27px;
+    }
+
+    h1, h2 {text-shadow: 2px 3px #282828;font-weight:350;}
+
+    .discl {font-family:"Anonymus Pro",monospace;font-size:70%;}
+    .discl a {color: #f7b85a;}
+    .discl a:hover {text-decoration:none;}
+
+    .hint {font-size:85%;font-weight:lighter;}
+
+    .button {
+        background-color: #04AA6D;
+        border: none;
+        color: #d6d2d2;
+        text-shadow: 1px 2px #282828;
+        padding: 15px 32px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+    }
+
+    .button:hover {background-color:#56ecb5;color:#282828;text-shadow:none;}
+
+    input {font-family:"Roboto Slab",serif;font-size:x-large;color:#282828;padding:10px;border:none;}
+    input[type=text] {letter-spacing: 0.15em;background-color:#d6d2d2;width:45%;}
+    input[type=submit] {background-color:#f7b85a;font-weight:bold;text-decoration:underline;}
+    input[type=submit]:hover {text-decoration: none;}
+
+    .result {letter-spacing: 0.15em;}
+    .win, .lose {width:55%;padding:10px;}
+    .win {background-color: green;}
+    .lose {background-color: #7d1111;}
+
+    /* Tooltip container */
+    .help {position: relative; text-decoration:underline 3px dotted #f7b85a;cursor: help;}
+  
+    /* Tooltip text */
+    .help .helptext {
+        visibility: hidden;
+        width: 400px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        text-shadow: none;
+        font-size: 50%;
+  
+    /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+  
+    /* Fade in tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+  }
+  
+    /* Tooltip arrow */
+    .help .helptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 17%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+    .help:hover .helptext {
+        visibility: visible;
+        opacity: 1;
+  }
+    </style>
+</head>
+<body>
+
+<div id="main">
+
+<h1>Welcome to Not W_rdle</h1>
+
+<p class="discl">this is a learning project to get to know python and flask</p>
+<p class="discl"><a href="https://github.com/balintfejer/wordl-python-training" title="GitHub">view the code</a> | <a href="https://linkedin.com/in/balint-fejer" title="LinkedIn">let's connect</a></p>
+
+<h2>Guess <span class="help">a word<span class="helptext">You're looking for a 5-letter English word.<br/>Your guess must be 5 characters long.</span></span> in six tries</h2>
+<p class="hint"><strong>X</strong>: the letter is at the <strong>correct position</strong><br/><strong>O</strong>: the word you're looking for <strong>contains</strong> the letter<br/><strong>_</strong>: the letter is <strong>not part of</strong> the word</p>
+
+{% block content %}<a href="{{ url_for('start') }}" class="button">Let's play</a>{% endblock %}
+
+</div>
+
+</body>
+</html>
