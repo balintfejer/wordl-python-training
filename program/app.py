@@ -17,17 +17,19 @@ def welcome():
 
 @app.route('/start')
 def start():
-    def word_list():
-        with open("words.txt", "r") as words:
-            full_word_list = [line.strip() for line in words]
-        return full_word_list
-    goal = r.choice(word_list())
+    with open("words.txt", "r") as words:
+        full_word_list = [line.strip() for line in words]
+    goal = r.choice(full_word_list)
+   
     fl.session['goal'] = goal
-    
-    # playcount = 1
-    # wincond = "XXXXX"
+    fl.session['playcount'] = 0
 
     print(goal) ### TEST
+    
+    return fl.render_template("start.html")
+
+    # playcount = 1
+    # wincond = "XXXXX"
 
     # won = "You won!"
     # lost = f"You lost!\nThe word was: {goal}"
@@ -48,17 +50,17 @@ def start():
     # if guess == wincond:
     # else:
 
-    return fl.render_template("start.html")
-
 @app.route('/play', methods=["POST"])
 def play(output=None, guess=None, playcount=None):
 
     guess = fl.request.form['guess'].lower()
     goal = fl.session.get('goal', None)
-
-    playcount = 0
+    fl.session['playcount'] += 1
+    playcount = fl.session.get('playcount', None)
     this_guess_char_count = 0
     output = ""
+
+    # print(fl.session['playcount']) ### TEST
 
     for i in range(len(guess)):
 

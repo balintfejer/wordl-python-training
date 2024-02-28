@@ -1,11 +1,14 @@
 {% extends "start.html" %}
 {% block content %}
 
-<p>{{ guess }}: <span class="result">{{ output }}</span></p>
-{% if output != "XXXXX" %}
+<p>{{ playcount }}. {{ guess }}: <span class="result">{{ output }}</span></p>
+{% if output != "XXXXX" and playcount <= 5 %}
 {{ super() }}
+{% elif output != "XXXXX" and playcount == 6 %}
+<p class="lose">Better luck next time.</p>
+<a href="{{ url_for('start') }}" class="button">Play again</a>
 {% elif output == "XXXXX" %}
-<p class="winner">Nice.</p>
+<p class="win">Nice.</p>
 <a href="{{ url_for('start') }}" class="button">Play again</a>
 {% endif %}
 
