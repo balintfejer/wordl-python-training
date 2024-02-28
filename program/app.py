@@ -51,11 +51,12 @@ def start():
     return fl.render_template("start.html")
 
 @app.route('/play', methods=["POST"])
-def play(output=None, guess=None):
+def play(output=None, guess=None, playcount=None):
 
     guess = fl.request.form['guess'].lower()
     goal = fl.session.get('goal', None)
 
+    playcount = 0
     this_guess_char_count = 0
     output = ""
 
@@ -84,4 +85,4 @@ def play(output=None, guess=None):
         else: ### guess[i] not in goal
             output += "_"
 
-    return fl.render_template("play.html", output=output, guess=guess)
+    return fl.render_template("play.html", output=output, guess=guess, playcount=playcount)
